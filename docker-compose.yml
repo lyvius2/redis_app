@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  redis:
+    image: redis:7.2.5-alpine
+    ports:
+      - "6379:6379"
+    expose:
+      - 6379
+    volumes:
+      - ./app:/app
+
+  app:
+    build:
+      context: .
+    volumes:
+      - ./app:/app
+    command: sleep infinity
