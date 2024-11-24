@@ -10,15 +10,6 @@ services:
     volumes:
       - ./app:/app
 
-  app:
-    build:
-      context: .
-    volumes:
-      - ./app:/app
-    command: sleep infinity
-    environment:
-      - REDIS_OM_URL=redis://@redis:6379/0
-
   redis-stack:
     image: redis/redis-stack:latest
     ports:
@@ -27,3 +18,12 @@ services:
     expose:
       - 16379
       - 18001
+
+  app:
+    build:
+      context: .
+    volumes:
+      - ./app:/app
+    command: sleep infinity
+    environment:
+      - REDIS_OM_URL=redis://@redis-stack:6379/0
